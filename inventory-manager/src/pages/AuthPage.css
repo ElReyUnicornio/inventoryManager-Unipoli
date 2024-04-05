@@ -1,0 +1,26 @@
+.banner-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.card {
+    max-width: 800px;
+    margin-inline: auto;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.doubleInline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}

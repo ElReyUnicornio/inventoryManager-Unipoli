@@ -1,0 +1,24 @@
+.productCard {
+    width: 100%;
+    max-width: 400px;
+    padding-bottom: 1rem;
+}
+
+.productCard-stock {
+    float: right;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+
+}
+
+.itemContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
