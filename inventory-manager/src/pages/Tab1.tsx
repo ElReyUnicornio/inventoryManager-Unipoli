@@ -58,7 +58,6 @@ const Tab1: React.FC = () => {
     }catch(error){
       console.log(user)
       console.error(error);
-    } finally {
     }
   }
 

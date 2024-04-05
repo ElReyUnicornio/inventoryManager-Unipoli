@@ -74,6 +74,7 @@ export const useAuth = () => {
                 setUser(data.token);
                 setCookie('user', data, 15);
                 setIsAuthenticated(true);
+                location.reload()
             }
         } catch (error) {
             console.error(error);
@@ -85,7 +86,6 @@ export const useAuth = () => {
         if (user.role === 'Admin' && !(user as Admin).position) throw new Error("Position is required for admin users");
         if (user.role === 'Student' && (!(user as Student).carreer || !(user as Student).quarter)) throw new Error("Carreer and quarter are required for user users");
 
-        console.log(user);
         try {
             const response = await fetch('http://127.0.0.1:8000/register/', {
                 method: 'POST',
@@ -107,6 +107,7 @@ export const useAuth = () => {
                 setUser(JSON.stringify(data));
                 setCookie('user', JSON.stringify(data), 15);
                 setIsAuthenticated(true);
+                location.reload()
             }
         } catch (error) {
             console.error(error);
