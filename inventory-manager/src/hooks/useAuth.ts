@@ -84,7 +84,7 @@ export const useAuth = () => {
     const register = async (user: Student | Admin) => {
         if (user.name === '' || user.enrollment === '' || user.password === '' || user.role === '') throw new Error("All fields are required");
         if (user.role === 'Admin' && !(user as Admin).position) throw new Error("Position is required for admin users");
-        if (user.role === 'Student' && (!(user as Student).carreer || !(user as Student).quarter)) throw new Error("Carreer and quarter are required for user users");
+        if (user.role === 'Student' && (!(user as Student).carreer || !(user as Student).quarter)) throw new Error("Carreer and quarter are required for user student");
 
         try {
             const response = await fetch('http://127.0.0.1:8000/register/', {
@@ -104,8 +104,8 @@ export const useAuth = () => {
                 throw new Error(data.detail)
             };
             if (data) {
-                setUser(JSON.stringify(data));
-                setCookie('user', JSON.stringify(data), 15);
+                setUser(data.token);
+                setCookie('user', data, 15);
                 setIsAuthenticated(true);
                 location.reload()
             }

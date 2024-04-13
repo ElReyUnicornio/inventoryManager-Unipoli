@@ -5,13 +5,11 @@ import { Admin, Student, User } from '../types/user';
 import useForm from '../hooks/useForm';
 
 const SignupForm: React.FC = () => {
-    const { formData, handleChange } = useForm({});
+    const { formData, isValid, errors, handleChange } = useForm({});
     const [role , setRole] = useState<string>('');
     const { register } = useContext(AuthContext);
 
     const handleSubmit = () => {
-        
-
         if (formData.password !== formData.confirmPassword) {
             alert('Las contraseñas no coinciden');
             return;
@@ -47,18 +45,22 @@ const SignupForm: React.FC = () => {
         <IonCardContent className='card-content'>
             <form>
                 <IonInput label="Nombre" 
+                className={errors?.name && 'ion-invalid ion-touched'}
                     labelPlacement="floating"
                     name='name'
                     onIonChange={handleChange}
-                    fill="outline"/>
+                    fill="outline"
+                    errorText={errors?.name}/>
                 <br></br>
                 <IonInput label="Matrícula" 
+                    className={errors?.enrollment && 'ion-invalid ion-touched'}
                     labelPlacement="floating"
                     name='enrollment'
                     onIonChange={handleChange}
                     counter={true}
                     maxlength={10}
-                    fill="outline"/>
+                    fill="outline"
+                    errorText={errors?.enrollment}/>
                 <br></br>
                 <IonSelect placeholder="Rol"
                     fill='outline'
@@ -106,20 +108,24 @@ const SignupForm: React.FC = () => {
                 ): null}
                 <br></br>
                 <IonInput label="Contraseña"
+                    className={errors?.password && 'ion-invalid ion-touched'}
                     labelPlacement="floating"
                     fill="outline"
                     type="password"
                     name='password'
-                    onIonChange={handleChange} />
+                    onIonChange={handleChange}
+                    errorText={errors?.password} />
                 <br></br>
                 <IonInput label="Confirmar Contraseña"
+                    className={errors?.confirmPassword && 'ion-invalid ion-touched'}
                     labelPlacement="floating"
                     fill="outline"
                     type="password"
                     name='confirmPassword'
-                    onIonChange={handleChange} />
+                    onIonChange={handleChange} 
+                    errorText={errors?.confirmPassword}/>
                 <br></br>
-                <IonButton expand='block' onClick={handleSubmit}>Enviar</IonButton>
+                <IonButton expand='block' onClick={handleSubmit} disabled={!isValid}>Enviar</IonButton>
             </form>
         </IonCardContent>
     )
